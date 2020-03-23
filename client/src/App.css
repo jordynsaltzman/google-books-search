@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #bc986a;
+  width: 100%;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+/* #8d8741 25%,
+    #659dbd 30%,
+    #daad86 75%,
+    #bc986a 100% */

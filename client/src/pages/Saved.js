@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const Saved = () => {
-  return <div>Saved Page</div>;
+  return (
+    <div>
+      <Navbar />
+      Saved Page
+    </div>
+  );
 };
 
 export default Saved;
