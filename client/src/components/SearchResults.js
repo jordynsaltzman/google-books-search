@@ -47,11 +47,11 @@ const SearchResults = () => {
 
   return (
     <div className="container resultsContainer">
-      <div className="row">
+      <div className="row searchRow">
         <div className="col-md-12 ">
-          <h3 className="resultsTitle">Search Books</h3>
-        </div>
-        <div className="col-md-12">
+          <h3 className="searchBooksText">Search Books</h3>
+          {/* </div>
+        <div className="col-md-12"> */}
           <form>
             <input
               className="searchForm"
@@ -69,55 +69,55 @@ const SearchResults = () => {
             </button>
           </form>
         </div>
-        <div className="row">
-          <div className="col-md-12 ">
-            <h3 className="resultsTitle">Results</h3>
-          </div>
-          <div className="col-md-12">
-            {!books ? (
-              <div className="col-md-12 ">
-                <h3 className="noResultsText">No Results.</h3>
-              </div>
-            ) : (
-              books.map(book => {
-                return (
-                  <BookResult
-                    key={book.etag}
-                    id={book.id}
-                    value={book.id}
-                    onClick={() =>
-                      handleSave(
-                        book.volumeInfo.title,
-                        book.volumeInfo.authors,
-                        book.volumeInfo.imageLinks.thumbnail,
-                        book.volumeInfo.infoLink,
-                        book.searchInfo.textSnippet
-                      )
-                    }
-                    // onClickView={handleView}
-                    title={book.volumeInfo.title}
-                    image={
-                      !book.volumeInfo?.imageLinks?.thumbnail
-                        ? "https://placehold.it/200x300"
-                        : book.volumeInfo.imageLinks.thumbnail
-                    }
-                    description={
-                      !book.searchInfo?.textSnippet
-                        ? "No description."
-                        : book.searchInfo.textSnippet
-                    }
-                    link={book.volumeInfo.infoLink}
-                  >
-                    {book.volumeInfo.authors.map(author => (
-                      <p className="authorName" key={author}>
-                        {author}
-                      </p>
-                    ))}
-                  </BookResult>
-                );
-              })
-            )}
-          </div>
+      </div>
+      <div className="row">
+        <div className="col-md-12 ">
+          <h3 className="resultsTitle">Results</h3>
+        </div>
+        <div className="col-md-12">
+          {!books ? (
+            <div className="col-md-12 ">
+              <h3 className="noResultsText">No Results.</h3>
+            </div>
+          ) : (
+            books.map(book => {
+              return (
+                <BookResult
+                  key={book.etag}
+                  id={book.id}
+                  value={book.id}
+                  onClick={() =>
+                    handleSave(
+                      book.volumeInfo.title,
+                      book.volumeInfo.authors,
+                      book.volumeInfo.imageLinks.thumbnail,
+                      book.volumeInfo.infoLink,
+                      book.searchInfo.textSnippet
+                    )
+                  }
+                  // onClickView={handleView}
+                  title={book.volumeInfo.title}
+                  image={
+                    !book.volumeInfo?.imageLinks?.thumbnail
+                      ? "https://placehold.it/200x300"
+                      : book.volumeInfo.imageLinks.thumbnail
+                  }
+                  description={
+                    !book.searchInfo?.textSnippet
+                      ? "No description."
+                      : book.searchInfo.textSnippet
+                  }
+                  link={book.volumeInfo.infoLink}
+                >
+                  {book.volumeInfo.authors.map(author => (
+                    <p className="authorName" key={author}>
+                      {author}
+                    </p>
+                  ))}
+                </BookResult>
+              );
+            })
+          )}
         </div>
       </div>
     </div>

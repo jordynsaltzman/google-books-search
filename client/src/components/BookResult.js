@@ -13,10 +13,7 @@ const BookResult = props => {
           >
             <i className="fas fa-save"></i>
           </button>
-          <button
-            className="btn btn-primary saveBtn"
-            onClick={props.onClickView}
-          >
+          <button className="btn btn-primary saveBtn" onClick={props.link}>
             <i className="fas fa-eye"></i>
           </button>
           <h5>
@@ -35,7 +32,6 @@ const BookResult = props => {
         </div>
         <div className="col-md-9 resultText">
           <p>{props.description}</p>
-          <p>{props.link}</p>
         </div>
       </div>
     </div>
