@@ -15,7 +15,7 @@ const SearchResults = () => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    API.getBooks(searchQuery)
+    API.searchBooks(searchQuery)
       .then(res => {
         console.log(res.data.items);
         setBook(res.data.items);

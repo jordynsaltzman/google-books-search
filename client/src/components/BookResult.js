@@ -5,17 +5,24 @@ const BookResult = props => {
     <div className="resultDiv">
       <div className="row resultTitle">
         <div className="col-md-12">
-          <button
-            onClick={props.onClick}
+          <button onClick={props.onClick} className="btn btn-primary saveBtn ">
+            <i
+              className={
+                window.location.pathname.indexOf("saved") > -1
+                  ? "fas fa-times"
+                  : "fas fa-save"
+              }
+            ></i>
+          </button>
+
+          <a
             className="btn btn-primary saveBtn"
-            // onClick={props.onClickSave(props.id)}
-            // value={props.value}
+            href={props.link}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <i className="fas fa-save"></i>
-          </button>
-          <button className="btn btn-primary saveBtn" onClick={props.link}>
             <i className="fas fa-eye"></i>
-          </button>
+          </a>
           <h5>
             <strong>{props.title}</strong>
           </h5>

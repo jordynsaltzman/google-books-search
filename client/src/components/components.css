@@ -194,3 +194,7 @@ input:-webkit-autofill:active {
 .searchRow {
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}
