@@ -7,6 +7,12 @@ const SearchResults = () => {
   const [books, setBook] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  //state to manage whether save button was clicked so that I can hide it on click
+  const [saveBtnState, setSaveBtnState] = useState({
+    btnClickedID: null
+  });
+
+  //setting search query state to use for API.searchBooks method
   const handleInputChange = event => {
     const { value } = event.target;
     setSearchQuery(value);
@@ -24,7 +30,11 @@ const SearchResults = () => {
   };
 
   //post book info to db when user clicks save btn
-  const handleSave = (title, authors, image, link, description) => {
+  const handleSave = (title, authors, image, link, description, id) => {
+    setSaveBtnState({
+      btnClickedID: id
+    });
+
     //create new book based on book model
     let savedBook = {
       title: title,
@@ -67,6 +77,10 @@ const SearchResults = () => {
       <div className="row">
         <div className="col-md-12 ">
           <h3 className="resultsTitle">Results</h3>
+          <p className="slogan">
+            View book details in Google Books, or save to your reading list for
+            later.
+          </p>
         </div>
         <div className="col-md-12">
           {!books ? (
@@ -80,16 +94,21 @@ const SearchResults = () => {
                   key={book.etag}
                   id={book.id}
                   value={book.id}
+                  clicked={
+                    saveBtnState.btnClickedID === book.id
+                      ? "hidden"
+                      : "btn btn-primary saveBtn"
+                  }
                   onClick={() =>
                     handleSave(
                       book.volumeInfo.title,
                       book.volumeInfo.authors,
                       book.volumeInfo.imageLinks.thumbnail,
                       book.volumeInfo.infoLink,
-                      book.searchInfo.textSnippet
+                      book.searchInfo.textSnippet,
+                      book.id
                     )
                   }
-                  // onClickView={handleView}
                   title={book.volumeInfo.title}
                   image={
                     !book.volumeInfo?.imageLinks?.thumbnail

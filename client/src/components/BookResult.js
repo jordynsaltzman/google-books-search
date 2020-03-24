@@ -5,7 +5,11 @@ const BookResult = props => {
     <div className="resultDiv">
       <div className="row resultTitle">
         <div className="col-md-12">
-          <button onClick={props.onClick} className="btn btn-primary saveBtn ">
+          <button
+            onClick={props.onClick}
+            //   className="btn btn-primary saveBtn"
+            className={props.clicked}
+          >
             <i
               className={
                 window.location.pathname.indexOf("saved") > -1
@@ -20,7 +24,7 @@ const BookResult = props => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fas fa-eye"></i>
+            <i className="fas fa-link"></i>
           </a>
           <h5>
             <strong>{props.title}</strong>

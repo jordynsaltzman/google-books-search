@@ -44,6 +44,7 @@ const SavedResults = () => {
               description={book.description}
               image={book.image}
               link={book.link}
+              clicked="btn btn-primary saveBtn"
               onClick={() => {
                 handleRemove(book._id);
               }}
