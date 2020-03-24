@@ -8,9 +8,7 @@ const SearchResults = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   //state to manage whether save button was clicked so that I can hide it on click
-  const [saveBtnState, setSaveBtnState] = useState({
-    btnClickedID: null
-  });
+  const [saveBtnState, setSaveBtnState] = useState([]);
 
   //setting search query state to use for API.searchBooks method
   const handleInputChange = event => {
@@ -31,9 +29,7 @@ const SearchResults = () => {
 
   //post book info to db when user clicks save btn
   const handleSave = (title, authors, image, link, description, id) => {
-    setSaveBtnState({
-      btnClickedID: id
-    });
+    setSaveBtnState([...saveBtnState, id]);
 
     //create new book based on book model
     let savedBook = {
@@ -94,21 +90,19 @@ const SearchResults = () => {
                   key={book.etag}
                   id={book.id}
                   value={book.id}
-                  clicked={
-                    saveBtnState.btnClickedID === book.id
-                      ? "hidden"
-                      : "btn btn-primary saveBtn"
-                  }
-                  onClick={() =>
-                    handleSave(
-                      book.volumeInfo.title,
-                      book.volumeInfo.authors,
-                      book.volumeInfo.imageLinks.thumbnail,
-                      book.volumeInfo.infoLink,
-                      book.searchInfo.textSnippet,
-                      book.id
-                    )
-                  }
+                  renderSave={saveBtnState.indexOf(book.id) === -1}
+                  onClick={() => {
+                    if (saveBtnState.indexOf(book.id) === -1) {
+                      handleSave(
+                        book.volumeInfo.title,
+                        book.volumeInfo.authors,
+                        book.volumeInfo.imageLinks.thumbnail,
+                        book.volumeInfo.infoLink,
+                        book.searchInfo.textSnippet,
+                        book.id
+                      );
+                    }
+                  }}
                   title={book.volumeInfo.title}
                   image={
                     !book.volumeInfo?.imageLinks?.thumbnail

@@ -7,6 +7,7 @@ const SavedResults = () => {
   const [savedBooks, setSavedBooks] = useState({
     books: []
   });
+  const [deleteBtnState, setDeleteBtnState] = useState([]);
 
   //load saved books when component mounts
   useEffect(() => {
@@ -24,9 +25,6 @@ const SavedResults = () => {
     API.deleteBook(id).then(res => {
       console.log(res);
 
-      //reload page to remove book element
-      //window.location.reload() was not working on deployed site
-      //so I'm trying this:
       window.location.href = window.location.href;
     });
   };
@@ -44,7 +42,7 @@ const SavedResults = () => {
               description={book.description}
               image={book.image}
               link={book.link}
-              clicked="btn btn-primary saveBtn"
+              renderSave={deleteBtnState}
               onClick={() => {
                 handleRemove(book._id);
               }}
