@@ -25,7 +25,7 @@ const SavedResults = () => {
     API.deleteBook(id).then(res => {
       console.log(res);
 
-      window.location.href = window.location.href;
+      window.location.href = "/saved";
     });
   };
 
