@@ -14,7 +14,6 @@ const BookResult = props => {
               }
             ></i>
           </button>
-
           <a
             className="btn btn-primary saveBtn"
             href={props.link}

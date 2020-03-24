@@ -8,8 +8,8 @@ const SavedResults = () => {
     books: []
   });
 
+  //load saved books when component mounts
   useEffect(() => {
-    console.log("USE EFFECT WORKS!");
     API.getBooks()
       .then(res => {
         setSavedBooks({
@@ -19,30 +19,44 @@ const SavedResults = () => {
       .catch(err => console.log(err));
   }, []);
 
+  //delete book from db when user clicks X button
   const handleRemove = id => {
     API.deleteBook(id).then(res => {
-      console.log("DELETED!");
       console.log(res);
-      window.location.reload();
+
+      //reload page to remove book element
+      //window.location.reload() was not working on deployed site
+      //so I'm trying this:
+      window.location.href = window.location.href;
     });
   };
 
   return (
-    <div>
-      {savedBooks.books.map(book => {
-        return (
-          <BookResult
-            title={book.title}
-            authors={book.authors}
-            description={book.description}
-            image={book.image}
-            link={book.link}
-            onClick={() => {
-              handleRemove(book._id);
-            }}
-          />
-        );
-      })}
+    <div className="container resultsContainer">
+      <div className="row">
+        <div className="col-md-12 ">
+          <h3 className="resultsTitle">Saved Books</h3>
+        </div>
+        {savedBooks.books.map(book => {
+          return (
+            <BookResult
+              title={book.title}
+              description={book.description}
+              image={book.image}
+              link={book.link}
+              onClick={() => {
+                handleRemove(book._id);
+              }}
+            >
+              {book.authors.map(author => (
+                <p className="authorName" key={author}>
+                  {author}
+                </p>
+              ))}
+            </BookResult>
+          );
+        })}
+      </div>
     </div>
   );
 };

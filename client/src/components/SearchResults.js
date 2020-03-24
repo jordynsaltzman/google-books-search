@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "./components.css";
 import API from "../utils/API";
 import BookResult from "./BookResult";
@@ -13,6 +12,7 @@ const SearchResults = () => {
     setSearchQuery(value);
   };
 
+  //get book results from Google Books API
   const handleFormSubmit = event => {
     event.preventDefault();
     API.searchBooks(searchQuery)
@@ -23,35 +23,29 @@ const SearchResults = () => {
       .catch(err => console.log(err));
   };
 
+  //post book info to db when user clicks save btn
   const handleSave = (title, authors, image, link, description) => {
-    let bookData = {
+    //create new book based on book model
+    let savedBook = {
       title: title,
       authors: authors,
       description: description,
       image: image,
       link: link
     };
-
-    console.log(bookData);
-
-    API.saveBook(bookData)
+    //and use saveBook method
+    API.saveBook(savedBook)
       .then(res => {
         console.log(res);
       })
       .catch(err => console.log(err));
   };
 
-  //   const handleView = event => {
-  //     console.log("Clicked View" + event);
-  //   };
-
   return (
     <div className="container resultsContainer">
       <div className="row searchRow">
         <div className="col-md-12 ">
           <h3 className="searchBooksText">Search Books</h3>
-          {/* </div>
-        <div className="col-md-12"> */}
           <form>
             <input
               className="searchForm"

@@ -23,7 +23,7 @@ const Navbar = () => {
             className="navItem basic"
             to="/search"
           >
-            Search
+            Find Books
           </NavLink>
 
           <NavLink
@@ -32,7 +32,7 @@ const Navbar = () => {
             className="navItem basic"
             to="/saved"
           >
-            Saved
+            Reading List
           </NavLink>
         </div>
       </div>
