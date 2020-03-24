@@ -9,7 +9,7 @@ const SavedResults = () => {
   });
   const [deleteBtnState, setDeleteBtnState] = useState([]);
 
-  //load saved books when component mounts
+  //load saved books when component mounts and when books state is changed
   useEffect(() => {
     API.getBooks()
       .then(res => {
@@ -18,14 +18,12 @@ const SavedResults = () => {
         });
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [savedBooks.books]);
 
   //delete book from db when user clicks X button
   const handleRemove = id => {
     API.deleteBook(id).then(res => {
       console.log(res);
-
-      window.location.href = "/saved";
     });
   };
 
