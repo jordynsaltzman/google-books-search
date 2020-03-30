@@ -2,6 +2,8 @@
 
 A React-based Google Books Search application.
 
+View deployed site [here](https://googlebookssearchreact1.herokuapp.com/)
+
 ## Preview
 
 ![screenshot](client/public/assets/images/books_search_screenshot.JPG)
