@@ -2,7 +2,7 @@
 
 A React-based Google Books Search application.
 
-View deployed site [here.](https://googlebookssearchreact1.herokuapp.com/)
+Visit the deployed site [here.](https://googlebookssearchreact1.herokuapp.com/)
 
 ## Preview
 
